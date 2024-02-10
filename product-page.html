@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Muli:400,300italic,300,400italic);
+
+        body,
+        html {
+            margin: 0;
+            font-family: muli;
+            height: 100%;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+        }
+
+        .container {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            height: 100%;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: justify;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background: #999;
+        }
+
+        .window {
+            background: #fff;
+            width: 470px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            min-height: 450px;
+            position: relative;
+            box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .options {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            margin-top: 25px;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+
+        .main-content {
+            padding: 50px 46px 25px 20px;
+            box-sizing: border-box;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            color: #222;
+            width: 100%;
+            height: 100%;
+            -webkit-flex-flow: column;
+            -ms-flex-flow: column;
+            flex-flow: column;
+        }
+
+        h1 {
+            letter-spacing: 0px;
+            letter-spacing: .02rem;
+            font-size: 48px;
+            font-size: 3rem;
+        }
+
+        h3 {
+            color: #666;
+            font-size: 19px;
+            font-size: 1.2rem;
+        }
+
+        .description {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .highlight-window {
+            height: 550px;
+            width: 400px;
+            background: #ccc;
+            background: url('https://dl.dropboxusercontent.com/s/rohie91jbw2a9ca/T60751001_2V5_back.jpg');
+            background-size: cover;
+            box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            position: relative;
+            background-position: center top;
+        }
+
+        .color {
+            height: 30px;
+            cursor: pointer;
+            width: 30px;
+            background: #eee;
+            border: 1px solid #eee;
+            position: relative;
+        }
+
+        .highlight-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            background: url('https://dl.dropboxusercontent.com/s/anvrsmhpcs6fl6c/T60751001_050_back.jpg?dl=0');
+            background-size: cover;
+            -webkit-transition: opacity .4s ease;
+            transition: opacity .4s ease;
+            background-position: center top;
+        }
+
+        .background-element {
+            background: #457;
+            position: absolute;
+            width: 120%;
+            height: 400px;
+            left: -50px;
+            top: -80px;
+            -webkit-transform: rotate(-5deg);
+            -ms-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+            -webkit-transition: background .6s ease;
+            transition: background .6s ease;
+        }
+
+        .color.overlay {
+            position: absolute;
+            z-index: 10;
+            background: transparent;
+            top: -1px;
+            left: -1px;
+            -webkit-transform: translateX(-100%);
+            -ms-transform: translateX(-100%);
+            transform: translateX(-100%);
+            opacity: 0;
+            filter: alpha(opacity=0);
+            border: 2px solid #fff;
+            cursor: pointer;
+        }
+
+        .color picker {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        .color.color-a {
+            background: url('https://dl.dropboxusercontent.com/s/anvrsmhpcs6fl6c/T60751001_050_back.jpg?dl=0');
+            background-size: cover;
+        }
+
+        .color.color-b {
+            background: url('https://dl.dropboxusercontent.com/s/anvrsmhpcs6fl6c/T60751001_2V5_back.jpg');
+            background-size: cover;
+        }
+
+        .check {
+            width: 10px;
+            height: 15px;
+            border: 3px solid #fff;
+            border-top: none;
+            border-right: none;
+            -webkit-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            position: absolute;
+            left: 9px;
+            top: 13px;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        .color.color-a:hover .check,
+        .color.color-b:hover .check {
+            -webkit-transition: opacity .1s ease;
+            transition: opacity .1s ease;
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+
+        .color:hover .check {
+            -webkit-transition: opacity .1s ease;
+            transition: opacity .1s ease;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        .color-picker:hover .color.overlay {
+            -webkit-transition: -webkit-transform .25s ease;
+            transition: transform .25s ease;
+            -webkit-transform: translateX(0);
+            -ms-transform: translateX(0);
+            transform: translateX(0);
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+
+        .options {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            margin-top: 25px;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+
+        .size-picker {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-flow: column;
+            -ms-flex-flow: column;
+            flex-flow: column;
+        }
+
+        .range-picker div {
+            cursor: pointer;
+            font-size: 20px;
+            font-size: 1.25rem;
+            margin: 5px 0;
+        }
+
+        .range-picker div:hover {
+            color: #457;
+        }
+
+        .range-picker .active {
+            color: #457;
+        }
+
+        .small {
+            color: #aaa;
+            font-size: 12px;
+            font-size: 0.75rem;
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+        .divider {
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        .purchase-info {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 32px;
+            font-size: 2rem;
+        }
+
+        #add-to-cart-btn {
+            background-color: #457;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        #add-to-cart-btn:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='container'>
+        <div class='background-element' id='background-element'></div>
+        <div class='highlight-window' id='product-img'>
+            <div class='highlight-overlay' id='highlight-overlay'></div>
+        </div>
+        <div class='window'>
+            <div class='main-content'>
+                <h2 id="product-title">Loading...</h2>
+                <h1 id="product-name">Loading...</h1>
+                <h3 id="product-description">Loading...</h3>
+                <div class='description' id='description'></div>
+                <div class='options'>
+                    <div class='color-options'>
+                        Color:
+                        <div class='color-picker'>
+                            <div class='color overlay' id='color-overlay'>
+                                <div class='check'></div>
+                            </div>
+                            <div class='color color-a' id='color-a'></div>
+                            <div class='color color-b' id='color-b'></div>
+                        </div>
+                        <span class='small' style='color:#457'>COLOR: <span id='color-name'>BLUES / 2V5</span></span>
+                    </div>
+                    <div class='size-picker'>
+                        Size:
+                        <div class='range-picker' id='range-picker'>
+                            <!-- Size options will be added dynamically -->
+                        </div>
+                        <a class='small align-right' href='#'>VIEW SIZE-CHART</a>
+                    </div>
+                </div>
+                <div class='divider'></div>
+                <div class='purchase-info'>
+                    <div class='price' id='product-price'>Loading...</div>
+                    <button id='add-to-cart-btn'>ADD TO CART</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve selected product from local storage
+            const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
+
+            if (selectedProduct) {
+                // Update HTML elements with product data
+                document.getElementById('product-title').textContent = 'Tiger of Sweden';
+                document.getElementById('product-name').textContent = selectedProduct.title;
+                document.getElementById('product-description').textContent = 'MINIMALISTIC COAT IN COTTON-BLEND';
+                document.getElementById('description').textContent = selectedProduct.description;
+                document.getElementById('color-name').textContent = selectedProduct.category; // You might want to change this
+                document.getElementById('product-price').textContent = '£' + selectedProduct.price.toFixed(2);
+
+                // Add size options dynamically
+                const sizePicker = document.getElementById('range-picker');
+                selectedProduct.sizes.forEach(size => {
+                    const sizeElement = document.createElement('div');
+                    sizeElement.textContent = size;
+                    sizePicker.appendChild(sizeElement);
+                });
+
+                // Update color options
+                document.getElementById('color-a').style.backgroundImage = `url(${selectedProduct.images[0]})`;
+                document.getElementById('color-b').style.backgroundImage = `url(${selectedProduct.images[1]})`;
+                document.getElementById('product-img').style.backgroundImage = `url(${selectedProduct.images[0]})`;
+                document.getElementById('background-element').style.background = selectedProduct.backgroundElementColor;
+
+                // Add event listener to color options
+                const colorOverlay = document.getElementById('color-overlay');
+                const highlightOverlay = document.getElementById('highlight-overlay');
+                document.getElementById('color-a').addEventListener('click', () => {
+                    colorOverlay.style.backgroundImage = `url(${selectedProduct.images[0]})`;
+                    highlightOverlay.style.backgroundImage = `url(${selectedProduct.images[0]})`;
+                    document.getElementById('product-img').style.backgroundImage = `url(${selectedProduct.images[0]})`;
+                });
+                document.getElementById('color-b').addEventListener('click', () => {
+                    colorOverlay.style.backgroundImage = `url(${selectedProduct.images[1]})`;
+                    highlightOverlay.style.backgroundImage = `url(${selectedProduct.images[1]})`;
+                    document.getElementById('product-img').style.backgroundImage = `url(${selectedProduct.images[1]})`;
+                });
+
+                // Additional logic for adding the product to the cart can be added here
+            } else {
+                console.error('No product data found.');
+            }
+        });
+    </script>
+</body>
+
+</html>

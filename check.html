@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Selection</title>
+</head>
+<body>
+    <!-- Example product elements -->
+    <div class="product" data-product-id="1">Product 1</div>
+    <div class="product" data-product-id="2">Product 2</div>
+
+    <script>
+        // Get all product elements
+        const products = document.querySelectorAll('.product');
+
+        // Add click event listener to each product
+        products.forEach(product => {
+            product.addEventListener('click', () => {
+                // Fetch product details based on its ID or other data attribute
+                const productId = product.getAttribute('data-product-id');
+                const productData = getProductData(productId); // Assuming you have a function to fetch product data
+
+                // Store the selected product data in local storage
+                localStorage.setItem('selectedProduct', JSON.stringify(productData));
+
+                // Open the product page
+                window.location.href = 'product-page.html'; // Change 'product-page.html' to your actual product page URL
+            });
+        });
+
+        // Function to fetch product data based on ID (example)
+        function getProductData(productId) {
+            // Example implementation: Fetch product data from an API or a predefined list
+            // Replace this with your actual logic to fetch product data
+            if (productId === "1") {
+                return {
+                    title: 'Product 1 Title',
+                    description: 'Product 1 Description',
+                    price: 19.99,
+                    sizes: ['Small', 'Medium', 'Large'],
+                    category: 'Category 1',
+                    images: ['product1_image1.jpg', 'product1_image2.jpg'],
+                    backgroundElementColor: '#ccc'
+                };
+            } else if (productId === "2") {
+                return {
+                    title: 'Product 2 Title',
+                    description: 'Product 2 Description',
+                    price: 29.99,
+                    sizes: ['Small', 'Medium', 'Large', 'Extra Large'],
+                    category: 'Category 2',
+                    images: ['product2_image1.jpg', 'product2_image2.jpg'],
+                    backgroundElementColor: '#eee'
+                };
+            } else {
+                return {}; // Return empty object if product ID is not recognized
+            }
+        }
+    </script>
+</body>
+</html>

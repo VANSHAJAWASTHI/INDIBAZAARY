@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-commerce Landing page Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="searchbarcss.css">
+    <script src="https://apis.google.com/js/api.js"></script>
+</head>
+<body>
+    <header>
+        <button id="toggle-dark-mode">Toggle Dark Mode</button>
+        <script src="script.js"></script>
+        <!-- NEW NAVBAR -->
+        <div class="newnav">
+            <img src="Image/logo.png" alt="Logo" class="logo">
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <!-- search bar -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search...">
+
+                <div class="icons-container">
+                    <button class="voice-button" onclick="startVoiceSearch()">
+                        <img src='Image/voice.jpg' alt="Voice Search" class="voice-icon">
+                    </button>
+
+                    <div class="camera-div">
+                        <label for="imageUpload" class="camera-button">
+                            <img src='Image/search.jpg' alt="Camera Search" class="camera-icon" id="camera_img">
+                        </label>
+                        <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="startImageSearch(event)">
+                    </div>
+                </div>
+                <div class="extracted-text" id="extractedText"></div>
+            </div>
+            <select id="languageSelect" onchange="translatePage()">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>                        
+                <option value="bn">Bengali</option>
+                <option value="te">Telugu</option>
+                <option value="mr">Marathi</option>
+                <option value="ta">Tamil</option>
+                <option value="gu">Gujarati</option>
+                <option value="kn">Kannada</option>
+                <option value="ur">Urdu</option>
+                <option value="pa">Punjabi</option>
+                <option value="ml">Malayalam</option>
+                <!-- Add more languages here -->
+            </select>
+        </div>
+        <!-- NEW NAVBAR END -->
+
+        <div id="header-hero">
+            <div class="header-bg"> <img src="Image/bg.jpg" alt="header-image" /> </div>
+            <div class="header-content">
+                <p class="heading-1" data-translate="Summer Collection 2024">Summer Collection 2024</p>
+                <h1 data-translate>Welcome to IndicBazaar<span class="logo-style">y</span> Unique Store</h1>
+                <p class="description" data-translate="Indulge in Elegance, Shop in Every Language!
+
+                  Discover IndicBazaar Shop - where style knows no limits. Own or rent products that speak to your taste, all available in your preferred Indic language. Elevate your shopping experience - it's not just a purchase, it's a statement. Join us at Brandy Shop, where fashion meets language diversity">Indulge in Elegance, Shop in Every Language!
+
+                  Discover IndicBazaar Shop - where style knows no limits. Own or rent products that speak to your taste, all available in your preferred Indic language. Elevate your shopping experience - it's not just a purchase, it's a statement. Join us at Brandy Shop, where fashion meets language diversity</p>
+                <div class="button">
+                    <p data-translate>Shop Now</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="summer-collection">
+        <div class="container">
+            <div class="sc-content">
+                <h1 data-translate>Summer Collection</h1>
+                <p class="description" data-translate="Indulge in Elegance, Shop in Every Language!
+
+                  Discover IndicBazaar Shop - where style knows no limits. Own or rent products that speak to your taste, all available in your preferred Indic language. Elevate your shopping experience - it's not just a purchase, it's a statement. Join us at Brandy Shop, where fashion meets language diversity">Indulge in Elegance, Shop in Every Language!
+
+                  Discover IndicBazaar Shop - where style knows no limits. Own or rent products that speak to your taste, all available in your preferred Indic language. Elevate your shopping experience - it's not just a purchase, it's a statement. Join us at Brandy Shop, where fashion meets language diversity</p>
+                <a href="#" data-translate>Discover Now</a>
+            </div>
+            <div class="sc-media">
+                <div class="sc-media-bg"> <img src="Image/cold-fashion-man-women_3x.jpg" alt="sc-image" /> </div>
+            </div>
+        </div>
+    </section>
+    <div class="product"><a href="#" data-product-id="1">Product 1</a></div>
+    <section id="products">
+        <div class="container">
+            <div class="products-header">
+                <h2 data-translate>Popular Products</h2>
+                <p data-translate>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            </div>
+            <div class="product product-1">
+                <figure onclick="handleProductClick(1)"> <!-- Modify the product ID accordingly -->
+                    <img src="Image/product-1-img_3x.jpg" alt="product-image">
+                    <figcaption data-translate></figcaption>
+                    <figcaption>$ 56.00</figcaption>
+                </figure>
+            </div>
+
+            <div class="product product-2">
+                <figure onclick="handleProductClick(2)">
+                   <img src= "Image/product-2-img_3x.jpg" alt="product-image">
+                    <figcaption data-translate>Women Fashion</figcaption>
+                    <figcaption>$ 84.00</figcaption>
+                </figure>
+            </div>
+            <div class="product product-3">
+                <figure> <img src="Image/product-3-img_3x.jpg" alt="product-image">
+                    <figcaption data-translate>Women Fashion</figcaption>
+                    <figcaption>$ 48.00</figcaption>
+                </figure>
+            </div>
+            <div class="product product-4">
+                <figure> <img src="Image/product-4-img_3x.jpg" alt="product-image">
+                    <figcaption data-translate>Men Fashion</figcaption>
+                    <figcaption>$ 89.00</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+    <section id="collections">
+        <div class="container">
+            <div class="c-1">
+                <div class="c-1-image-holder"> <img src="Image/suit-collection-img_3x.jpg" alt="image"> </div>
+            </div>
+            <div class="c-2">
+                <h2 data-translate>Featured Collection</h2>
+                <hr />
+                <div class="c-2-image-holder"> <img class="left" src="Image/collection-2-img_3x.jpg" alt=""><img class="right" src="Image/collection-1-img_3x.jpg"
+                        alt=""></div>
+                <p class="button" data-translate>View All Collections</p>
+            </div>
+        </div>
+    </section>
+    <section id="blog">
+        <div class="container">
+            <div class="blog-header">
+                <h2 data-translate>Latest from Blog</h2>
+                <p data-translate>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            </div>
+            <div class="blog-content">
+                <div class="blog-1">
+                    <div class="blog-1-image-holder"> <img src="Image/blog-2-img_3x.jpg" alt="image"> </div>
+                    <div class="blog-1-content">
+                        <h4 data-translate>Lorem Ipsum</h4>
+                        <h3 data-translate>Lorem ipsum dolor sit amet.</h3>
+                        <p class="description" data-translate>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <p class="button" data-translate>View Post</p>
+                    </div>
+                </div>
+                <div class="blog-2">
+                    <div class="blog-2-image-holder"> <img src="Image/blog-1-img_3x.jpg" alt="image"> </div>
+                    <div class="blog-2-content">
+                        <h4 data-translate>Lorem Ipsum</h4>
+                        <h3 data-translate>Lorem ipsum dolor sit amet.</h3>
+                        <p class="description" data-translate>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <p class="button" data-translate>View Post</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="container">
+            <h4 data-translate>Contact Us</h4>
+            <p>451 Awenve 5th Street New York City</p>
+            <p>+ (42) 442 4521</p>
+            <p>info.fashion@gmail.com</p>
+            <p class="email" data-translate>Email Us <span><img src="Image/gmail.webp" alt="email-image"></span></p>
+        </div>
+    </section>
+    <div class="social-icons">
+        <a href="#" target="_blank"><img class="instagram-icon" src="Image/instagram.webp" alt="Instagram"></a>
+        <a href="#" target="_blank"><img class="twitter-icon" src="Image/twitter.webp" alt="twitter"></a>
+        <a href="#" target="_blank"><img class="facebook-icon" src="Image/Facebook.webp" alt="Facebook"></a>
+    </div>
+    <div class="follow-us">
+        <h3 data-translate>Follow Us</h3>
+    </div>
+    <footer>
+        <div class="footer-section">
+        </div>
+        <div class="footer-bottom">
+            <p class="copy-right" data-translate>© 2024 IndicBazaar. All Rights Reserved</p>
+            <div class="footer-links">
+                <a href="#" data-translate>Privacy Policy</a>
+                <a href="#" data-translate>Terms of Service</a>
+                <a href="#" data-translate>Accessibility</a>
+            </div>
+        </div>
+    </footer>
+    <div class="back-to-top"><a href="#nav"> <img title="Back to Top." src="Image/back_top.png" alt="back to top"></a> </div>
+    <script>
+        // Check if dark mode preference is stored in local storage
+const darkMode = localStorage.getItem('darkMode');
+
+// Apply dark mode if preference is true
+if (darkMode === 'true') {
+    document.body.classList.add('dark-mode');
+}
+
+// Toggle dark mode
+document.getElementById('toggle-dark-mode').addEventListener('click', () => {
+    // Toggle dark mode class on body
+    document.body.classList.toggle('dark-mode');
+
+    // Update local storage
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+});
+
+        // Function to translate the page content
+        function translatePage() {
+            const selectedLanguage = document.getElementById('languageSelect').value;
+            translateNode(document.body, selectedLanguage);
+        }
+
+        function translateNode(node, language) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                // Translate text nodes
+                translateText(node, language);
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                // Translate element nodes
+                node.childNodes.forEach(child => {
+                    translateNode(child, language);
+                });
+            }
+        }
+
+        function translateText(node, language) {
+            const text = node.textContent.trim();
+            if (text !== '') {
+                translateElement(node, text, language)
+                    .then(translatedText => {
+                        node.textContent = translatedText;
+                    })
+                    .catch(error => {
+                        console.error('Translation error:', error);
+                    });
+            }
+        }
+
+        async function translateElement(element, text, language) {
+            const apiKey = 'AIzaSyBy7BBULtWvrA8A89XyItUyH1_A6Zq63Fs';
+            const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=${apiKey}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    q: text,
+                    target: language
+                })
+            });
+            if (!response.ok) {
+                throw new Error('Translation request failed');
+            }
+            const data = await response.json();
+            if (data && data.data && data.data.translations && data.data.translations.length > 0) {
+                return data.data.translations[0].translatedText;
+            } else {
+                throw new Error('Translation data not found');
+            }
+        }
+
+        // Toggle dark mode function
+        function toggleDarkMode() {
+            const body = document.body;
+            const isDarkMode = body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode ? 'true' : 'false');
+        }
+
+        // Check local storage for user preference
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        if (isDarkMode) {
+            toggleDarkMode(); // Apply dark mode if it was enabled previously
+        }
+
+        // Function to search products
+        function searchProducts() {
+            var input, filter, products, product, i, txtValue;
+            input = document.getElementById("productSearch");
+            filter = input.value.toUpperCase();
+            products = document.querySelectorAll(".product");
+            for (i = 0; i < products.length; i++) {
+                product = products[i].querySelector("figcaption");
+                txtValue = product.textContent || product.innerText;
+                products[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+            }
+        }
+
+        // Function to show search bar on hover
+        function showSearchBar() {
+            var searchBar = document.getElementById("productSearch");
+            searchBar.style.opacity = "1";
+            searchBar.style.pointerEvents = "auto";
+        }
+
+        // Function to handle product link clicks
+        function handleProductClick(productId) {
+            const selectedLanguage = document.getElementById('languageSelect').value;
+            localStorage.setItem('selectedLanguage', selectedLanguage);
+            window.location.href = `newprod.html?id=${productId}&lang=${selectedLanguage}`;
+        }
+
+    </script>
+
+    <!-- searchbar linked javascript -->
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=AIzaSyBy7BBULtWvrA8A89XyItUyH1_A6Zq63Fs"></script> <!-- Voice synthesis script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- jQuery library -->
+    <script src="searchbar.js"></script>
+</body>
+</html>

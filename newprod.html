@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        #header {
+            background-color: #f7f7f7;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #logo {
+            width: 150px;
+            height: 150px;
+            height: auto;
+            margin-bottom: 20px;
+            margin-right: 30px;
+        }
+
+        #back-arrow {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            margin-left: 30px;
+        }
+
+        #product-details {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #004080;
+        }
+
+        button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #size-quantity-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .size_quantity {
+            margin-left: 10px;
+        }
+
+        select,
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        #cart-button {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        #reviews-container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .review {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .star {
+            color: #ffd700;
+        }
+
+        #filter-reviews {
+            margin-top: 10px;
+        }
+
+        #reviews-list {
+            max-height: 200px;
+            overflow-y: auto;
+            width: 500px;
+        }
+
+        body.dark-mode {
+            background-color: #333;
+            color: white;
+        }
+
+        .product-container.dark-mode {
+            background-color: #555;
+        }
+
+        .product.dark-mode {
+            background-color: #444;
+            border: 1px solid #666;
+        }
+
+        #product-details.dark-mode {
+            background-color: black;
+        }
+
+        #product-details.dark-mode h1,
+        #product-details.dark-mode p[data-translate="Description"],
+        #product-details.dark-mode p[data-translate="Price"] {
+            color: black;
+        }
+    </style>
+    <script>
+        function setSelectedLanguage(language) {
+            localStorage.setItem('selectedLanguage', language);
+        }
+
+        function getSelectedLanguage() {
+            return localStorage.getItem('selectedLanguage') || 'English';
+        }
+
+        const selectedLanguage = getSelectedLanguage();
+
+        function translateContent(language) {
+            const elementsToTranslate = document.querySelectorAll('[data-translate]');
+
+            for (const element of elementsToTranslate) {
+                translateElement(element, language);
+            }
+        }
+
+        async function translateElement(element, language) {
+            const text = element.innerText;
+
+            try {
+                const translatedText = await translate(text, language);
+                element.innerText = translatedText;
+            } catch (error) {
+                console.error('Error translating element:', error);
+            }
+        }
+
+        translateContent(selectedLanguage);
+
+        window.addEventListener('storage', () => {
+            const newSelectedLanguage = getSelectedLanguage();
+            translateContent(newSelectedLanguage);
+        });
+
+        async function translate(text, targetLanguage) {
+            const apiKey = 'AIzaSyBy7BBULtWvrA8A89XyItUyH1_A6Zq63Fs';
+            const endpoint = 'https://translation.googleapis.com/language/translate/v2';
+
+            try {
+                const response = await fetch(`${endpoint}?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        q: text,
+                        target: targetLanguage,
+                    }),
+                });
+
+                const data = await response.json();
+
+                if (data && data.data && data.data.translations && data.data.translations.length > 0) {
+                    return data.data.translations[0].translatedText;
+                } else {
+                    throw new Error('Translation failed.');
+                }
+            } catch (error) {
+                throw new Error('Error translating text:', error);
+            }
+        }
+
+        function applyDarkModeStyles() {
+            const storedDarkMode = localStorage.getItem('darkMode');
+            const body = document.body;
+            const header = document.getElementById('header');
+
+            if (storedDarkMode === 'true') {
+                body.classList.add('dark-mode');
+                if (header) {
+                    header.style.backgroundColor = '#444';
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            applyDarkModeStyles();
+            const selectedLanguage = getSelectedLanguage();
+            translateContent(selectedLanguage);
+        });
+    </script>
+</head>
+
+<body>
+    <div id="header">
+        <img id="back-arrow" src="https://img.icons8.com/ios/452/circled-left.png" alt="Back" onclick="goBack()">
+        <img id="logo" src="Image/logo.png" alt="Your Website Logo">
+    </div>
+    <div id="product-details"></div>
+    <div class="features">
+        <div id="size-quantity-container">
+            <div class="size_quantity">
+                <label for="size" data-translate>Size:</label>
+                <select id="size">
+                    <option value="small" data-translate>Small</option>
+                    <option value="medium" data-translate>Medium</option>
+                    <option value="large" data-translate>Large</option>
+                </select>
+            </div>
+            <div class="size_quantity">
+                <label for="quantity" data-translate>Quantity:</label>
+                <input type="number" id="quantity" min="1" value="1" data-translate>
+            </div>
+        </div>
+
+        <div id="reviews-container">
+            <h2 data-translate>Customer Reviews</h2>
+            <div id="filter-reviews">
+                Filter by Stars:
+                <select id="star-filter" onchange="filterReviews()">
+                    <option value="all" data-translate>All</option>
+                    <option value="5" data-translate>5 Stars</option>
+                    <option value="4" data-translate>4 Stars</option>
+                    <option value="3" data-translate>3 Stars</option>
+                    <option value="2" data-translate>2 Stars</option>
+                    <option value="1" data-translate>1 Star</option>
+                </select>
+            </div>
+            <div id="reviews-list"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        fetch('product.json')
+            .then(response => response.json())
+            .then(products => {
+                const product = products.find(p => p.id == productId);
+                displayProductDetails(product);
+            })
+            .catch(error => console.error('Error fetching product details:', error));
+
+        function displayProductDetails(product) {
+            const productDetailsContainer = document.getElementById('product-details');
+
+            if (product) {
+                productDetailsContainer.innerHTML = `
+                    <h1 data-translate>${product.name}</h1>
+                    <p data-translate>${product.description}</p>
+                    <p data-translate>Price: $${product.price.toFixed(2)}</p>
+                    <img src="${product.image}" alt="${product.name}">
+                    <a data-translate href="${product.link}" target="_blank">Product Link</a>
+                    <button data-translate onclick="redirectToCheckout('${product.id}')">Checkout</button>
+                    <button id="add-to-cart" onclick="addToCart()" data-translate>Add to Cart</button>
+                `;
+
+                const elementsToTranslate = productDetailsContainer.querySelectorAll('[data-translate]');
+                elementsToTranslate.forEach(element => translateElement(element, selectedLanguage));
+            } else {
+                productDetailsContainer.innerHTML = '<p data-translate>Product not found</p>';
+            }
+        }
+
+        function redirectToCheckout(productId) {
+            window.location.href = `checkout.html?id=${productId}`;
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function addToCart() {
+            const selectedSize = document.getElementById('size').value;
+            const selectedQuantity = document.getElementById('quantity').value;
+            alert(`Added to Cart - Size: ${selectedSize}, Quantity: ${selectedQuantity}`);
+        }
+
+        function displayReviews(reviews) {
+            const reviewsContainer = document.getElementById('reviews-list');
+            reviewsContainer.innerHTML = '';
+
+            reviews.forEach(review => {
+                const reviewElement = document.createElement('div');
+                reviewElement.classList.add('review');
+
+                const stars = '<span class="star">&#9733;</span>'.repeat(review.rating);
+
+                translate(review.comment, selectedLanguage)
+                    .then(translatedComment => {
+                        reviewElement.innerHTML = `<p>${stars}</p><p data-translate>${translatedComment}</p>`;
+                        reviewsContainer.appendChild(reviewElement);
+                    })
+                    .catch(error => console.error('Error translating review:', error));
+            });
+        }
+
+        async function translate(text, targetLanguage) {
+            const apiKey = 'AIzaSyBy7BBULtWvrA8A89XyItUyH1_A6Zq63Fs';
+            const endpoint = 'https://translation.googleapis.com/language/translate/v2';
+
+            try {
+                const response = await fetch(`${endpoint}?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        q: text,
+                        target: targetLanguage,
+                    }),
+                });
+
+                const data = await response.json();
+
+                if (data && data.data && data.data.translations && data.data.translations.length > 0) {
+                    return data.data.translations[0].translatedText;
+                } else {
+                    throw new Error('Translation failed.');
+                }
+            } catch (error) {
+                throw new Error('Error translating text:', error);
+            }
+        }
+
+        function filterReviews() {
+            const starFilter = document.getElementById('star-filter');
+            const selectedStar = starFilter.value;
+
+            const allReviews = [
+                { rating: 5, comment: "Excellent product!" },
+                { rating: 4, comment: "Good quality." },
+                { rating: 3, comment: "Average product." },
+                { rating: 5, comment: "Love it!" },
+                { rating: 2, comment: "Not satisfied." },
+                { rating: 1, comment: "Terrible experience." },
+            ];
+
+            if (selectedStar === 'all') {
+                displayReviews(allReviews);
+            } else {
+                const filteredReviews = allReviews.filter(review => review.rating == selectedStar);
+                displayReviews(filteredReviews);
+            }
+        }
+    </script>
+</body>
+
+</html>

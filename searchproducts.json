@@ -1,0 +1,213 @@
+[
+    {
+      "id": 1,
+      "name": "Men's Classic T-Shirt",
+      "category": "Clothing",
+      "price": "$19.99",
+      "image": "images/tshirt1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Women's High-Waisted Jeans",
+      "category": "Clothing",
+      "price": "$39.99",
+      "image": "images/jeans1.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Men's Classic T-Shirt",
+      "category": "Electronics",
+      "price": "$49.99",
+      "image": "images/earbuds1.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Smart Watch - Fitness Tracker",
+      "category": "Electronics",
+      "price": "$89.99",
+      "image": "images/smartwatch1.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Men's Running Shoes",
+      "category": "Footwear",
+      "price": "$59.99",
+      "image": "images/shoes1.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Portable External Hard Drive - 1TB",
+      "category": "Electronics",
+      "price": "$79.99",
+      "image": "images/harddrive1.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Women's Floral Dress",
+      "category": "Clothing",
+      "price": "$29.99",
+      "image": "images/dress1.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Wireless Charging Pad",
+      "category": "Electronics",
+      "price": "$29.99",
+      "image": "images/chargingpad1.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Men's Leather Wallet",
+      "category": "Accessories",
+      "price": "$24.99",
+      "image": "images/wallet1.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Bluetooth Portable Speaker",
+      "category": "Electronics",
+      "price": "$34.99",
+      "image": "images/speaker1.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Women's Winter Coat",
+      "category": "Clothing",
+      "price": "$79.99",
+      "image": "images/coat1.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Gaming Mouse - RGB Lighting",
+      "category": "Gaming Accessories",
+      "price": "$49.99",
+      "image": "images/mouse1.jpg"
+    },
+    {
+      "id": 13,
+      "name": "Stainless Steel Water Bottle",
+      "category": "Accessories",
+      "price": "$14.99",
+      "image": "images/waterbottle1.jpg"
+    },
+    {
+      "id": 14,
+      "name": "Men's Casual Sneakers",
+      "category": "Footwear",
+      "price": "$44.99",
+      "image": "images/sneakers1.jpg"
+    },
+    {
+      "id": 15,
+      "name": "Compact Digital Camera",
+      "category": "Electronics",
+      "price": "$199.99",
+      "image": "images/camera1.jpg"
+    },
+    {
+      "id": 16,
+      "name": "Women's Sunglasses",
+      "category": "Accessories",
+      "price": "$19.99",
+      "image": "images/sunglasses1.jpg"
+    },
+    {
+      "id": 17,
+      "name": "Portable Blender - USB Rechargeable",
+      "category": "Kitchen Appliances",
+      "price": "$34.99",
+      "image": "images/blender1.jpg"
+    },
+    {
+      "id": 18,
+      "name": "Men's Winter Gloves",
+      "category": "Accessories",
+      "price": "$14.99",
+      "image": "images/gloves1.jpg"
+    },
+    {
+      "id": 19,
+      "name": "Fitness Resistance Bands Set",
+      "category": "Fitness",
+      "price": "$24.99",
+      "image": "images/resistancebands1.jpg"
+    },
+    {
+      "id": 20,
+      "name": "Wireless Gaming Headset",
+      "category": "Gaming Accessories",
+      "price": "$79.99",
+      "image": "images/gamingheadset1.jpg"
+    },
+    {
+      "id": 21,
+      "name": "Women's Leather Backpack",
+      "category": "Accessories",
+      "price": "$49.99",
+      "image": "images/backpack1.jpg"
+    },
+    {
+      "id": 22,
+      "name": "Home Security Camera System",
+      "category": "Home Security",
+      "price": "$149.99",
+      "image": "images/securitycamera1.jpg"
+    },
+    {
+      "id": 23,
+      "name": "Men's Formal Suit",
+      "category": "Clothing",
+      "price": "$129.99",
+      "image": "images/suit1.jpg"
+    },
+    {
+      "id": 24,
+      "name": "Foldable Laptop Stand",
+      "category": "Office Accessories",
+      "price": "$29.99",
+      "image": "images/laptopstand1.jpg"
+    },
+    {
+      "id": 25,
+      "name": "Women's Running Shoes",
+      "category": "Footwear",
+      "price": "$54.99",
+      "image": "images/runningshoes1.jpg"
+    },
+    {
+      "id": 26,
+      "name": "Smart Home Thermostat",
+      "category": "Smart Home",
+      "price": "$89.99",
+      "image": "images/thermostat1.jpg"
+    },
+    {
+      "id": 27,
+      "name": "Travel Neck Pillow",
+      "category": "Travel Accessories",
+      "price": "$19.99",
+      "image": "images/travelpillow1.jpg"
+    },
+    {
+      "id": 28,
+      "name": "Portable External Battery Charger",
+      "category": "Electronics",
+      "price": "$39.99",
+      "image": "images/batterycharger1.jpg"
+    },
+    {
+      "id": 29,
+      "name": "Yoga Mat - Non-Slip Surface",
+      "category": "Fitness",
+      "price": "$24.99",
+      "image": "images/yogamat1.jpg"
+    },
+    {
+      "id": 30,
+      "name": "Men's Casual Watch",
+      "category": "Accessories",
+      "price": "$39.99",
+      "image": "images/watch1.jpg"
+    }
+  ]
+  
